@@ -30,8 +30,8 @@ resource "aws_cognito_user_pool" "vimooz_user_pool" {
   verification_message_template {
     default_email_option = "CONFIRM_WITH_LINK"
     email_subject = "Verify your email"
-    email_message = "Please click the following link to verify your email: https://example.com/verify?token={erdf}."
-    email_message_by_link = "Please click the following link to verify your email: https://example.com/verify?token={erdf}."
+    email_message = "Please click the following link to verify your email: https://example.com/verify?token={####}"
+    email_message_by_link = "Please click the following link to verify your email: https://example.com/verify?token={####}."
   }
 }
 

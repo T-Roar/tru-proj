@@ -1,6 +1,6 @@
 
 resource "aws_lambda_function" "cognito_verification_email" {
-  filename         = "cognito_verification_email.zip"
+  filename = "${file("${path.module}/cognito_verification_email.zip")}"
   function_name    = "cognito_verification_email"
   role             = aws_iam_role.lambda.arn
   handler          = "lambda_function.lambda_handler"
@@ -10,7 +10,7 @@ resource "aws_lambda_function" "cognito_verification_email" {
 
   environment {
     variables = {
-      VERIFICATION_URL = "https://example.com/verify?token={erdf}"
+      DYNAMODB_TABLE_NAME = aws_dynamodb_table.verification_tokens.name
     }
   }
 }
@@ -21,3 +21,4 @@ resource "aws_lambda_permission" "cognito_verification_email_invoke_permission" 
   function_name = aws_lambda_function.cognito_verification_email.function_name
   principal     = "cognito-idp.amazonaws.com"
 }
+
